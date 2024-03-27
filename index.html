@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi</title>
+    <link rel="icon" type="image/x-icon" href="kdjdc.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="mainPage">
+        <nav class="navCon">
+            <div class="welcome">
+                <h2>Welcome To HOLI 2025</h2>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row mainrow">
+                <div class="col-md-4 left">
+                    <div class="date">
+                        <h2 id="text">Next Holi Will Be</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 center">
+                    <div class="date">
+                        <h1 id="demo"></h1>
+                    </div>
+                </div>
+                <div class="col-md-4 right">
+                    <div class="date">
+                        <h2 id="text">After This Time</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 feedback">
+            <h2 style="color: white;" class="q">How was your holi in this year</h2>
+        </div>
+        <div class="col-md-12 feedback">
+            <p onclick="gfg(1)" class="star">😞</p>
+            <p onclick="gfg(2)" class="star">😒</p>
+            <p onclick="gfg(3)" class="star">😏</p>
+            <p onclick="gfg(4)" class="star">😀</p>
+            <p onclick="gfg(5)" class="star">😎</p>
+        </div>
+        <div id="output" style="display:none;"></div>
+        <br>
+
+        <div class="btninfo">
+            <a href="https://en.wikipedia.org/wiki/Holi" target="_blank">About HOLI</a>
+        </div>
+
+    </div>
+</body>
+<script>
+    var countDownDate = new Date("March 14, 2025 00:00:00").getTime();
+    var x = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("curdateshow").textContent = formattedDate;
+        }
+    }, 1000);
+
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    var day = today.getDate();
+    var formattedDate = year + '-' + month + '-' + day;
+
+    let stars = document.getElementsByClassName("star");
+    let output = document.getElementById("output");
+
+    function gfg(n) {
+        for (let i = 0; i < stars.length; i++) {
+            if (stars[i].innerHTML === "&#10004;") {
+                alert("You've already given feedback. Thank you!");
+                return;
+            }
+        }
+        remove();
+        for (let i = 0; i < n; i++) {
+            if (n == 1) cls = "one";
+            else if (n == 2) cls = "two";
+            else if (n == 3) cls = "three";
+            else if (n == 4) cls = "four";
+            else if (n == 5) cls = "five";
+            stars[i].className = "star " + cls;
+            stars[i].innerHTML = "&#10004;";
+            stars[i].setAttribute("onclick", "");
+        }
+        output.innerText = "Rating is: " + n + "/5";
+    }
+
+    function remove() {
+        let i = 0;
+        while (i < 5) {
+            stars[i].className = "star";
+            i++;
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
